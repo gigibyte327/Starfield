@@ -1,5 +1,21 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Starfield extends PApplet {
+
 Particle [] bob;
-void setup()
+public void setup()
 {
 	
 	size(400,400);
@@ -10,7 +26,7 @@ void setup()
 	bob[bob.length-1]=new OddballParticle();
 	bob[bob.length-2]=new JumboParticle();
 }
-void draw()
+public void draw()
 {
 	fill(0,25);
 	rect(0,0,400,400);
@@ -21,7 +37,7 @@ void draw()
 	}
 }
 
-void mousePressed(){
+public void mousePressed(){
 	for(int i = 0; i<bob.length-3;i++){
 		((NormalParticle)bob[i]).xPos = mouseX;
 		((NormalParticle)bob[i]).yPos = mouseY;
@@ -45,7 +61,7 @@ class NormalParticle implements Particle
 	public void move(){
 		yPos=yPos+(Math.sin(angle))*speed;
 		xPos=xPos+(Math.cos(angle))*speed;
-		angle+=0.01;
+		angle+=0.01f;
 	}
 	public void show(){
 		fill(rC,gC,bC);
@@ -99,7 +115,7 @@ class JumboParticle implements Particle
 	public void move(){
 		yPos=yPos+(Math.sin(angle))*speed;
 		xPos=xPos+(Math.cos(angle))*speed;
-		angle+=0.01;
+		angle+=0.01f;
 
 	}
 	public void show(){
@@ -109,3 +125,12 @@ class JumboParticle implements Particle
 	}
 }
 
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Starfield" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
