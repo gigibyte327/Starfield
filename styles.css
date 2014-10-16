@@ -15,7 +15,10 @@ body {
 header {
 	
 }
-
+img{
+    height:100px;
+    width:100px;
+}
 footer {
 	font-style: italic;
 	font-size: 90%;
